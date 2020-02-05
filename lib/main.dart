@@ -1,4 +1,3 @@
-import 'package:diagonal/diagonal.dart';
 import 'package:flutter/material.dart';
 import 'package:landing_page/RegisterForm.dart';
 
@@ -104,7 +103,10 @@ class LeftPane extends StatelessWidget {
             SizedBox.fromSize(size: Size.fromHeight(48.0)),
             Tagline(),
             SizedBox.fromSize(size: Size.fromHeight(48.0)),
-            KeyPoints(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32.0),
+              child: KeyPoints(),
+            ),
           ],
         ),
       ),
@@ -120,17 +122,17 @@ class RightPane extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage("https://i.imgur.com/nzxBbXG.jpg"),
+            image: NetworkImage("https://i.imgur.com/25MD6ey.jpg"),
             fit: BoxFit.cover,
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 32.0),
+          padding: const EdgeInsets.only(left: 64.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(32.0),
+                padding: const EdgeInsets.all(64.0),
                 child: RegisterForm(),
               ),
             ],
@@ -145,7 +147,7 @@ class DiagonalClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    path.moveTo(64.0, 0);
+    path.moveTo(128.0, 0);
     path.lineTo(size.width, 0);
     path.lineTo(size.width, size.height);
     path.lineTo(0.0, size.height);
@@ -165,7 +167,7 @@ class MainScreen extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: LeftPane(),
-          flex: 10,
+          flex: 9,
         ),
         Expanded(
           child: RightPane(),
@@ -189,10 +191,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        accentColor: Color.fromARGB(255, 126, 85, 199),
+        accentColor: Color.fromARGB(255, 255, 176, 69),
         brightness: Brightness.dark,
       ),
       home: Scaffold(
+        backgroundColor: Color.fromARGB(255, 0x11, 0x1c, 0x32),
         body: Container(
           child: SafeArea(
             child: SizedBox.expand(

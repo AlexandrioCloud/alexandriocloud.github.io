@@ -34,6 +34,7 @@ class KeyPoint extends StatelessWidget {
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 255, 176, 69),
               ),
             ),
             Text(description),
