@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'App.dart';
+
 class KeyPoint extends StatelessWidget {
   final String title;
   final String description;
@@ -14,31 +16,25 @@ class KeyPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.vertical,
+    var settings = context.findAncestorStateOfType<AppState>().settings;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(
-            right: 8.0,
-          ),
-          child: Icon(
-            icon,
-            size: 48,
-          ),
+        Icon(
+          icon,
+          size: 48,
         ),
-        Wrap(
-          direction: Axis.vertical,
-          children: <Widget>[
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 255, 176, 69),
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headline6.copyWith(
+                color: settings.color,
               ),
-            ),
-            Text(description),
-          ],
+        ),
+        Text(
+          description,
+          style: Theme.of(context).textTheme.subtitle2,
         ),
       ],
     );
@@ -47,44 +43,43 @@ class KeyPoint extends StatelessWidget {
 
 class KeyPoints extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      direction: Axis.horizontal,
-      children: <Widget>[
-        KeyPoint(
-          description: "Retrouver vos livres sur tout vos appareils.",
-          icon: Icons.cloud,
-          title: "Bibliothèque dans le cloud",
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Divider(),
-        ),
-        KeyPoint(
-          description:
-              "Mettez en ligne vos livres et récupérez les à tout moment sur n'importe quel plateforme.",
-          icon: Icons.file_upload,
-          title: "Votre bibliothèque vous appartient",
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Divider(),
-        ),
-        KeyPoint(
-          description: "Prenez des notes à tout moment sur chaque page.",
-          icon: Icons.edit,
-          title: "Prise de notes",
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Divider(),
-        ),
-        KeyPoint(
-          description: "Transparence et respect de la vie privée.",
-          icon: Icons.share,
-          title: "Open Source",
-        ),
-      ],
-    );
-  }
+  Widget build(BuildContext context) => Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          KeyPoint(
+            description: "Retrouver vos livres sur tout vos appareils.",
+            icon: Icons.cloud,
+            title: "Bibliothèque dans le cloud",
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          KeyPoint(
+            description:
+                "Mettez en ligne vos livres et récupérez les à tout moment sur n'importe quel plateforme.",
+            icon: Icons.file_upload,
+            title: "Votre bibliothèque vous appartient",
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          KeyPoint(
+            description: "Prenez des notes à tout moment sur chaque page.",
+            icon: Icons.edit,
+            title: "Prise de notes",
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          KeyPoint(
+            description: "Transparence et respect de la vie privée.",
+            icon: Icons.share,
+            title: "Open Source",
+          ),
+        ],
+      );
 }
