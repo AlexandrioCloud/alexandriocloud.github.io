@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterForm extends StatelessWidget {
+  final controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -8,6 +11,7 @@ class RegisterForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             prefixIcon: Icon(Icons.email),
             filled: true,
@@ -16,7 +20,14 @@ class RegisterForm extends StatelessWidget {
           ),
         ),
         FlatButton(
-          onPressed: () {
+          onPressed: () async {
+            var prefs = await SharedPreferences.getInstance();
+            var list = prefs.getStringList("NewsletterMails");
+            if (list == null)
+              list = List<String>();
+            list.add(controller.text);
+            await prefs.setStringList("NewsletterMails", list);
+
             final snackBar = SnackBar(
               behavior: SnackBarBehavior.floating,
               content: Text(
